@@ -30,13 +30,6 @@ Blog.init(
                 model: 'user',
                 key: 'id',
             }
-        },
-        comment: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'comment',
-                key: 'id',
-            }
         }
     },
     {
