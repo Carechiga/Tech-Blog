@@ -1,0 +1,31 @@
+
+<a href="/dashboard" class="go-back">Back to dashboard</a>
+
+<article class="new-page">
+    <section class="edit-form-page">
+        <div class="form-heading">
+            <h2>
+                Edit Blog Post
+            </h2>
+        </div>
+        <div class="form-section">
+            <form class="edit-blog-post-form" data-id="{{blog.id}}">
+                <div class="post-name-section">
+                    <label for="post-name">Name</label>
+                    <input type="text" name="post-name" id="post-name" value="{{blog.post_name}}" />
+                </div>
+                <div class="post-body">
+                    <label for="post-body">Content</label>
+                    <textarea class="entry-field" id="post-body" name="post-body">{{blog.post_body}}</textarea>
+                </div>
+                <button type="submit">Update Blog Post</button>
+                <button type="button" class="delete-post-btn">Delete Post</button>
+            </form>
+        </div>
+    </section>
+</article>
+
+{{#if loggedIn}}
+<script src="/javascript/editBlogPost.js"></script>
+<script src="/javascript/deleteBlogPost.js"></script>
+{{/if}}
