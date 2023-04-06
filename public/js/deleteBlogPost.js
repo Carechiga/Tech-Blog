@@ -1,6 +1,5 @@
 const delButtonHandler = async (event) => {
-    event.preventDefault();
-
+ 
     //grabs id from DOM
     const post_id = document.querySelector('#blog-id').dataset.id;
 

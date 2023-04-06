@@ -2,6 +2,14 @@
     {
       "post_name": "First Blog Post",
       "post_body": "This is the first blog post on this site! Can't wait for more users to add their content!"
+    },
+    {
+      "post_name": "Tech Blog is up and Running",
+      "post_body": "After a lot of hard work it appears that the tech blog is now functional! Go crazy and add all the posts you want!"
+    },
+    {
+      "post_name": "Its almost the weekend",
+      "post_body": "Cant wait to work on more coding this weekend!"
     }
-  ]
+    ]
   
