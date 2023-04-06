@@ -34,6 +34,8 @@ In order to use this application you first need to create an account by entering
 ![alt text](assets/images/Screenshot5.png)
 ![alt text](assets/images/Screenshot6.png)
 
+here is a link to the deployed application: https://fathomless-peak-84484.herokuapp.com/
+
 ## Credits
 
 
