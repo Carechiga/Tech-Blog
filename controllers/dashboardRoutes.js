@@ -46,9 +46,9 @@ router.get ('/edit/:id', withAuth, async (req, res) => {
         res.status(404).json({ message: 'No blog post found with this ID'});
         return;
     }
-    const blogs = blogData.get({plain: true});
+    const blog = blogData.get({plain: true});
     res.render('editBlogPost', {
-        blogs,
+        blog,
         logged_in: req.session.logged_in,
         });
     }catch (err){

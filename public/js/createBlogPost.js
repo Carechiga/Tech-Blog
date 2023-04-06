@@ -1,7 +1,6 @@
 const newFormHandler = async (event) =>{
-    event.preventDefault();
-    const post_name = document.querySelector('#post-name').value;
-    const post_body = document.querySelector('#post-body').value.trim();
+    const post_name = document.getElementById('post-name').value.trim();
+    const post_body = document.getElementById('post-body').value.trim();
 
     if (post_name && post_body){
     const response = await fetch(`/api/blogs`, {
