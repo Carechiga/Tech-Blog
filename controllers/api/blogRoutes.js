@@ -3,7 +3,9 @@ const { Blog, User, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
+//GET route for blogs
 router.get('/', async (req, res) => {
+  //pulls blog data from db ordering it from newest to oldest attaches user name and asociated comments with their users
   try {
     const blogData = await Blog.findAll({ 
       attributes: ['id', 'post_name', 'post_body', 'date_created'],
@@ -27,6 +29,7 @@ router.get('/', async (req, res) => {
   }
 })
 
+//GET route for an individual blog post
 router.get('/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk({ 
@@ -45,6 +48,7 @@ router.get('/:id', async (req, res) => {
       }
     }
   ]});
+  //returns 404 error if id for post doesnt existin database
     if(!blogData) {
       res.status(404).json({message: 'No blog post found with this ID'})
     }
@@ -54,7 +58,9 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+//POST route for blogs
 router.post('/', withAuth, async (req, res) => {
+  //creates a req body from user input (see js file) and session data
   try {
     const newBlog = await Blog.create({
       ...req.body,
@@ -67,6 +73,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+//DELETE route deletes blog post with chosen id if session user is the user who created
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogData = await Blog.destroy({

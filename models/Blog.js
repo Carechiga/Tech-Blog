@@ -37,7 +37,7 @@ Blog.init(
         timestamps: false,
         freeseTableName: true,
         underscored: true,
-        modelName: 'blog'
+        modelName: 'blogs'
     }
 );
 

@@ -3,10 +3,10 @@
 
 {{> blogPostInfo blog}}
 
-{{#if loggedIn}}
+{{#if logged_in}}
 <form class="comment-form">
     <div>
-        <textarea name="comment-body"></textarea>
+        <textarea id="comment-body" name="comment-body"></textarea>
     </div>
     <div>
         <button type="submit">Add Comment</button>
@@ -16,6 +16,6 @@
 
 {{> comments blog.comments}}
 
-{{#if loggedIn}}
-<script src="/javascript/comment.js"></script>
+{{#if logged_in}}
+<script src="/js/comment.js"></script>
 {{/if}}

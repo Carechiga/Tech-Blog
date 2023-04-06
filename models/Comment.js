@@ -40,7 +40,7 @@ Comment.init(
         timestamps: false,
         freeseTableName: true,
         underscored: true,
-        modelName: 'comment'
+        modelName: 'comments'
     }
 );
 

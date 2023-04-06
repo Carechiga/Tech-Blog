@@ -3,6 +3,7 @@ const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 const sequelize = require('../config/connection');
 
+//GET route to display blog posts with user id that matches the logged in user
 router.get('/', withAuth, async (req, res) => {
     try{
         const blogData = await Blog.findAll({
@@ -20,6 +21,7 @@ router.get('/', withAuth, async (req, res) => {
             }]
         })
         const blogs = blogData.map((blog) => blog.get({plain:true}));
+        //tells handle bars to use dashboard.handlebars as html body 
         res.render('dashboard', {
             blogs,
             logged_in: req.session.logged_in,
