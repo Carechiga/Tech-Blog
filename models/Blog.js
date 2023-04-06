@@ -13,7 +13,7 @@ Blog.init(
         },
         post_name: {
             type: DataTypes.STRING,
-            allowNull:false,
+            allowNull: false,
         },
         post_body: {
             type: DataTypes.TEXT,

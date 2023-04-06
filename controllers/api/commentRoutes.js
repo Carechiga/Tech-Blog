@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Comment, User, Blog } = require('../../models');
+const { Comment} = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
     try{
     const commentData= await Comment.findAll({});
-    res.status(200).json(blogData);
+    res.status(200).json(commentData);
     }catch (err) {
         res.status(500).json(err);
     }
@@ -18,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
             blog_id: req.body.blog_id,
             user_id: req.session.user_id,
         });
-        res.status(200).json(newBlog);
+        res.status(200).json(newComment);
     }catch (err) {
         res.status(500).json(err)
     }

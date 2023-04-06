@@ -9,14 +9,15 @@ router.get('/', async (req, res) => {
         include: [{
             model: Comment,
             attributes: ['id', 'comment_text', 'blog_id', 'user_id', 'date_created'],
+            order: [['date_created', 'DESC']],
             include: [{ 
                 model: User,
                 attributes: ['name'],
             }]
         }]
     })
-    const blogs =blogData.map((blog) => blog.get({plain:true}));
-    res.render('dashboard', {
+    const blogs = blogData.map((blog) => blog.get({plain:true}));
+    res.render('homepage', {
         blogs,
         logged_in: req.session.logged_in,
     })
@@ -42,8 +43,8 @@ router.get('/blog/:id', async (req, res) => {
         res.status(404).json({ messad: 'No blog post found with this ID'});
         return;
     }
-    const blog = blogData.get({plain: true});
-    res.render('edit-blogpost', {
+    const blogs = blogData.get({plain: true});
+    res.render('editBlogPost', {
         blogs,
         logged_in: req.session.logged_in,
         });
@@ -53,7 +54,7 @@ router.get('/blog/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -63,7 +64,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('profile', {
+    res.render('dashboard', {
       ...user,
       logged_in: true
     });

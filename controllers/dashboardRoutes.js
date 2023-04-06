@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
+const sequelize = require('../config/connection');
 
 router.get('/', withAuth, async (req, res) => {
     try{
@@ -18,17 +19,17 @@ router.get('/', withAuth, async (req, res) => {
                 }]
             }]
         })
-        const blogs =blogData.map((blog) => blog.get({plain:true}));
+        const blogs = blogData.map((blog) => blog.get({plain:true}));
         res.render('dashboard', {
             blogs,
             logged_in: req.session.logged_in,
-        })
+        }) 
     }catch (err){
         res.status(500).json(err);
     }
 });
 
-router.get ('edit/:id', withAuth, async (req, res) => {
+router.get ('/edit/:id', withAuth, async (req, res) => {
     try {
     const blogData = await Blog.findByPk(req.params.id, {
         atttibutes: [ 'id', 'post_name', 'post_body', 'date_created'],
@@ -42,11 +43,11 @@ router.get ('edit/:id', withAuth, async (req, res) => {
             }]
     })
     if (!blogData){
-        res.status(404).json({ messad: 'No blog post found with this ID'});
+        res.status(404).json({ message: 'No blog post found with this ID'});
         return;
     }
-    const blog = blogData.get({plain: true});
-    res.render('edit-blogpost', {
+    const blogs = blogData.get({plain: true});
+    res.render('editBlogPost', {
         blogs,
         logged_in: req.session.logged_in,
         });
@@ -55,8 +56,8 @@ router.get ('edit/:id', withAuth, async (req, res) => {
     }
 });
 
-router.get('new', (req, res) => {
-    res.render('add-blogpost', {
+router.get('/new', (req, res) => {
+    res.render('createPost', {
         logged_in: req.session.logged_in,
     });
 });
