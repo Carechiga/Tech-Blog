@@ -2,17 +2,13 @@ const editFormHandler = async (event) => {
     event.preventDefault();
     const post_name = document.querySelector('#post-name').value;
     const post_body = document.querySelector('#post-body').value;
-    const post_id = docuemnt.querySelector('.edit-blog-post-form').getAttribute('data-id');
+    //grabs id from DOM
+    const post_id = document.querySelector('#blog-id').dataset.id;
 
-    const response = await fetch(`api/posts/${post_id}`, {
+    const response = await fetch(`/api/blogs/${post_id}`, {
         method: 'PUT',
-        body: JSON.stringify({
-            post_name,
-            post_body
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        body: JSON.stringify({ post_name, post_body }),
+        headers: { 'Content-Type': 'application/json' }
     });
 
     if( response.ok ) {
